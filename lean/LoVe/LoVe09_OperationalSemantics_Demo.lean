@@ -264,7 +264,7 @@ theorem sillyLoop_from_1_BigStep :
   by
     rw [sillyLoop]
     apply BigStep.while_true
-    { simp }
+    { aesop }
     { apply BigStep.seq
       { apply BigStep.skip }
       { apply BigStep.assign } }
@@ -522,7 +522,7 @@ theorem sillyLoop_from_1_SmallStep :
     { apply SmallStep.whileDo }
     { apply RTC.head
       { apply SmallStep.if_true
-        simp }
+        aesop }
       { apply RTC.head
         { apply SmallStep.seq_step
           apply SmallStep.seq_skip }

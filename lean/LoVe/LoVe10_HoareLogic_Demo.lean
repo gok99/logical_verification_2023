@@ -297,7 +297,10 @@ theorem ADD_correct (n₀ m₀ : ℕ) :
       apply PartialHoare.seq_intro'
       { apply PartialHoare.assign_intro }
       { apply PartialHoare.assign_intro'
-        aesop })
+        intro
+        rw [State.update]
+        aesop
+      })
     (by aesop)
     (by aesop)
 
@@ -419,8 +422,9 @@ show {* fun s ↦ s "n" = n₀ ∧ s "m" = m₀ *}
      {* fun s ↦ s "n" = 0 ∧ s "m" = n₀ + m₀ *} from
   by
     vcg <;>
-      aesop
-
+    intro s
+    rw [State.update]
+    repeat { aesop }
 
 /- ## Hoare Triples for Total Correctness
 
